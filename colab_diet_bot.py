@@ -1344,7 +1344,7 @@ def handle_text(message):
 
 
 # ============================================================================
-# MAIN EXECUTION - OPTIMIZED FOR GOOGLE COLAB
+# MAIN EXECUTION - OPTIMIZED FOR GOOGLE COLAB AND RENDER
 # ============================================================================
 def run_bot():
     """Main function to run the bot with error handling"""
@@ -1354,6 +1354,14 @@ def run_bot():
     
     # Initialize database
     init_database()
+    
+    # Check if tokens are set
+    if TELEGRAM_BOT_TOKEN == "YOUR_TELEGRAM_BOT_TOKEN_HERE":
+        print("ERROR: Please set TELEGRAM_BOT_TOKEN environment variable!")
+        return
+    
+    if GEMINI_API_KEY == "YOUR_GEMINI_API_KEY_HERE":
+        print("WARNING: GEMINI_API_KEY not set. AI features may not work.")
     
     print(f"Bot Token: {TELEGRAM_BOT_TOKEN[:20]}...")
     print(f"Admin ID: {ADMIN_ID}")
@@ -1377,9 +1385,7 @@ def run_bot():
             time.sleep(5)
             continue
 
-# Run the bot
+# Run the bot only when executed directly (not when imported)
 if __name__ == "__main__":
     run_bot()
-else:
-    # For Google Colab - run directly
-    run_bot()
+

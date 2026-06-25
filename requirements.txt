@@ -12,9 +12,10 @@ google-generativeai>=0.5.0
 # Note: Pillow 10.4.0+ fixes __version__ attribute issues
 pillow>=10.4.0
 
-# Database (included in Python standard library, but explicit for clarity)
-# sqlite3 is built-in
-
-# Optional: For better async performance on Render
+# HTTP requests
 requests>=2.31.0
 urllib3>=2.0.0
+
+# For Render Web Service health check (optional)
+flask>=3.0.0
+gunicorn>=21.0.0
