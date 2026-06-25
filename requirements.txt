@@ -1,9 +1,6 @@
-# Diet Assistant Telegram Bot - Dependencies
-# For Render deployment with Python 3.11
-
-pyTelegramBotAPI
-google-generativeai
-pillow
-flask
-gunicorn
-requests
+pyTelegramBotAPI==4.14.0
+google-generativeai==0.3.2
+Pillow==10.1.0
+Flask==3.0.0
+gunicorn==21.2.0
+requests==2.31.0
