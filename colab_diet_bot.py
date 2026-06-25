@@ -18,21 +18,14 @@ Version: 1.0.0
 """
 
 # ============================================================================
-# CONFIGURATION - Supports both direct values and environment variables
+# CONFIGURATION - COLAB UCHUN TAYYOR
 # ============================================================================
 import os
 
-# Get your Telegram Bot Token from @BotFather
-# For Render: Set TELEGRAM_BOT_TOKEN in environment variables
-TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "YOUR_TELEGRAM_BOT_TOKEN_HERE")
-
-# Get your Gemini API Key from https://makersuite.google.com/app/apikey
-# For Render: Set GEMINI_API_KEY in environment variables
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY_HERE")
-
-# Your Telegram User ID (get it from @userinfobot)
-# For Render: Set ADMIN_ID in environment variables
-ADMIN_ID = int(os.environ.get("ADMIN_ID", "123456789"))
+# API KALITLAR - TO'G'RIDAN-TO'G'RI YOZILGAN
+TELEGRAM_BOT_TOKEN = "8163772583:AAFY4g1M8OS4luohuvrMYpqJ6fa32ue8zvc"
+GEMINI_API_KEY = "AIzaSyAb8RN6J_yF03nQqGXE4vivuqZQxW0uOknWRw0cseErYLij5DLw"
+ADMIN_ID = 956947665
 
 # ============================================================================
 # IMPORTS
@@ -47,24 +40,8 @@ import time
 import traceback
 from io import BytesIO
 
-# Pillow import - Python 3.14+ compatible
-try:
-    from PIL import Image
-    # Check if Pillow is properly installed (avoid __version__ issues in Python 3.14+)
-    try:
-        from PIL import __version__ as PIL_VERSION
-        print(f"Pillow version: {PIL_VERSION}")
-    except ImportError:
-        # Fallback for newer Pillow versions
-        import PIL
-        PIL_VERSION = getattr(PIL, '__version__', 'unknown')
-        print(f"Pillow loaded (version: {PIL_VERSION})")
-except ImportError:
-    print("Installing Pillow...")
-    import subprocess
-    import sys
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'pillow>=10.4.0'])
-    from PIL import Image
+# Pillow import
+from PIL import Image
 
 # ============================================================================
 # INITIALIZE BOT AND GEMINI
