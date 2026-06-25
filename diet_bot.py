@@ -1137,8 +1137,8 @@ def handle_photo(message):
         downloaded_file = bot.download_file(file_info.file_path)
         
         # Create image data for Gemini
-        import PIL.Image
-        image = PIL.Image.open(BytesIO(downloaded_file))
+        from PIL import Image
+        image = Image.open(BytesIO(downloaded_file))
         
         # Analyze with Gemini
         analysis = analyze_food_with_gemini(image, user_id)

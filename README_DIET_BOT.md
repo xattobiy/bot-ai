@@ -44,9 +44,32 @@ A comprehensive, multi-language diet assistant bot for Uzbekistan users with AI-
    - `/user` - View user statistics
    - `/reklama` - Broadcast messages to all users
 
-## Setup Instructions
+---
 
-### For Google Colab
+## Deployment Options
+
+### Option 1: Render (Recommended for Production)
+
+1. **Fork/Clone this repository to your GitHub**
+
+2. **Create a Render account** at https://render.com
+
+3. **Create a new Web Service:**
+   - Connect your GitHub repository
+   - Select "Worker" as service type
+   - Set Build Command: `pip install -r requirements.txt`
+   - Set Start Command: `python colab_diet_bot.py`
+
+4. **Add Environment Variables in Render Dashboard:**
+   ```
+   TELEGRAM_BOT_TOKEN = your_bot_token
+   GEMINI_API_KEY = your_gemini_api_key
+   ADMIN_ID = your_telegram_id
+   ```
+
+5. **Deploy!** The bot will start automatically.
+
+### Option 2: Google Colab (For Testing)
 
 1. **Create a new notebook** in Google Colab
 

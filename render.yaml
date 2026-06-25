@@ -1,0 +1,19 @@
+# Render Blueprint Configuration
+# https://render.com/docs/blueprint-spec
+
+services:
+  - type: worker
+    name: diet-assistant-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python colab_diet_bot.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.0"
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ADMIN_ID
+        sync: false

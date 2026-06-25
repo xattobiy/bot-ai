@@ -18,16 +18,21 @@ Version: 1.0.0
 """
 
 # ============================================================================
-# CONFIGURATION - UPDATE THESE VALUES WITH YOUR OWN KEYS
+# CONFIGURATION - Supports both direct values and environment variables
 # ============================================================================
+import os
+
 # Get your Telegram Bot Token from @BotFather
-TELEGRAM_BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN_HERE"
+# For Render: Set TELEGRAM_BOT_TOKEN in environment variables
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "YOUR_TELEGRAM_BOT_TOKEN_HERE")
 
 # Get your Gemini API Key from https://makersuite.google.com/app/apikey
-GEMINI_API_KEY = "YOUR_GEMINI_API_KEY_HERE"
+# For Render: Set GEMINI_API_KEY in environment variables
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY_HERE")
 
 # Your Telegram User ID (get it from @userinfobot)
-ADMIN_ID = 123456789  # Replace with your Telegram ID
+# For Render: Set ADMIN_ID in environment variables
+ADMIN_ID = int(os.environ.get("ADMIN_ID", "123456789"))
 
 # ============================================================================
 # IMPORTS
@@ -42,13 +47,24 @@ import time
 import traceback
 from io import BytesIO
 
+# Pillow import - Python 3.14+ compatible
 try:
-    import PIL.Image
+    from PIL import Image
+    # Check if Pillow is properly installed (avoid __version__ issues in Python 3.14+)
+    try:
+        from PIL import __version__ as PIL_VERSION
+        print(f"Pillow version: {PIL_VERSION}")
+    except ImportError:
+        # Fallback for newer Pillow versions
+        import PIL
+        PIL_VERSION = getattr(PIL, '__version__', 'unknown')
+        print(f"Pillow loaded (version: {PIL_VERSION})")
 except ImportError:
     print("Installing Pillow...")
     import subprocess
-    subprocess.check_call(['pip', 'install', 'pillow'])
-    import PIL.Image
+    import sys
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'pillow>=10.4.0'])
+    from PIL import Image
 
 # ============================================================================
 # INITIALIZE BOT AND GEMINI
@@ -963,7 +979,7 @@ def handle_photo(message):
     try:
         file_info = bot.get_file(message.photo[-1].file_id)
         downloaded_file = bot.download_file(file_info.file_path)
-        image = PIL.Image.open(BytesIO(downloaded_file))
+        image = Image.open(BytesIO(downloaded_file))
         analysis = analyze_food_with_gemini(image, user_id)
         bot.send_message(user_id, analysis, reply_markup=get_food_analysis_keyboard(user_id, "food"))
     except Exception as e:
