@@ -1,21 +1,9 @@
 # Diet Assistant Telegram Bot - Dependencies
-# Compatible with Python 3.10+ including Python 3.14+
-# For Render deployment
+# For Render deployment with Python 3.11
 
-# Telegram Bot API
-pyTelegramBotAPI>=4.18.0
-
-# Google Gemini AI
-google-generativeai>=0.5.0
-
-# Image Processing - Python 3.14+ compatible version
-# Note: Pillow 10.4.0+ fixes __version__ attribute issues
-pillow>=10.4.0
-
-# HTTP requests
-requests>=2.31.0
-urllib3>=2.0.0
-
-# For Render Web Service health check (optional)
-flask>=3.0.0
-gunicorn>=21.0.0
+pyTelegramBotAPI
+google-generativeai
+pillow
+flask
+gunicorn
+requests
